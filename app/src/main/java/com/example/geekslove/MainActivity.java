@@ -94,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
             for (int j = 0 ; j < arr.get(i).size(); j++){
                 TextView tv = new TextView(this);
                 tv.setText(arr.get(i).get(j).toString());
+                tv.setPadding(50, 20, 20 , 20);
+                tv.setTextSize(18);
                 r.addView(tv);
             }
             tb.addView(r);
