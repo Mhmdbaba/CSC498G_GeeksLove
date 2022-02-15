@@ -55,12 +55,12 @@ public class MainActivity extends AppCompatActivity {
         Random rand = new Random();
         int rand_number = rand.nextInt(100);
 
-        output.setText(rand_number + "/100");
+        output.setText(rand_number + "%");
 
         List<String> temp = new ArrayList<String>();
 
         temp.add(name.getText().toString());
-        temp.add((Integer.toString(rand_number)));
+        temp.add((Integer.toString(rand_number)) + "%");
 
         arr.add(temp);
 
@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
         else
             img.setImageResource(R.drawable.python);
 
+        img.setTranslationY(2000);
+
          updateTable();
 
     }
@@ -97,5 +99,6 @@ public class MainActivity extends AppCompatActivity {
             tb.addView(r);
         }
         count++;
+        img.animate().translationYBy(-2000).rotation(3600).setDuration(500);
     }
 }
