@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -25,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
     TextView name;
 
     TableLayout tb;
+    ImageView img;
+    Spinner spinner;
+    int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,24 +36,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         arr = new ArrayList<List<String>>();
 
-        Spinner spinner = findViewById(R.id.input_dropdown);
+        spinner = findViewById(R.id.input_dropdown);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.languages, android.R.layout.simple_spinner_dropdown_item);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
         output = (TextView) findViewById(R.id.output_number);
-
         name = findViewById(R.id.input_name);
-
         tb = (TableLayout) findViewById(R.id.table);
+        img = (ImageView) findViewById(R.id.image);
+
+        count = 0;
+
     }
 
     public void Calculate(View view){
         Random rand = new Random();
         int rand_number = rand.nextInt(100);
 
-        output.setText(Integer.toString(rand_number) + "/100");
+        output.setText(rand_number + "/100");
 
         List<String> temp = new ArrayList<String>();
 
@@ -59,19 +65,37 @@ public class MainActivity extends AppCompatActivity {
         arr.add(temp);
 
 
-        // updateTable();
+        if (spinner.getSelectedItem().toString().equalsIgnoreCase("java"))
+            img.setImageResource(R.drawable.java);
+        else if (spinner.getSelectedItem().toString().equalsIgnoreCase("html and css"))
+            img.setImageResource(R.drawable.htmlandcss);
+        else if (spinner.getSelectedItem().toString().equalsIgnoreCase("c++"))
+            img.setImageResource(R.drawable.cplusplus);
+        else if (spinner.getSelectedItem().toString().equalsIgnoreCase("c"))
+            img.setImageResource(R.drawable.c);
+        else if (spinner.getSelectedItem().toString().equalsIgnoreCase("c#"))
+            img.setImageResource(R.drawable.csharp);
+        else if (spinner.getSelectedItem().toString().equalsIgnoreCase("swift"))
+            img.setImageResource(R.drawable.swift);
+        else if (spinner.getSelectedItem().toString().equalsIgnoreCase("javascript"))
+            img.setImageResource(R.drawable.javascript);
+        else
+            img.setImageResource(R.drawable.python);
 
+         updateTable();
 
     }
 
     public void updateTable(){
-        for (int i = 0; i < arr.size(); i++){
+        for (int i = count; i < arr.size(); i++){
             TableRow r = new TableRow(this);
-            TextView tv = new TextView(this);
             for (int j = 0 ; j < arr.get(i).size(); j++){
+                TextView tv = new TextView(this);
                 tv.setText(arr.get(i).get(j).toString());
                 r.addView(tv);
             }
+            tb.addView(r);
         }
+        count++;
     }
 }
