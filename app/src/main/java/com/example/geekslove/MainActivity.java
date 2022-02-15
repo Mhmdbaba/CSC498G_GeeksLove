@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         List<String> temp = new ArrayList<String>();
 
-        temp.add(name.getText().toString());
+        temp.add(spinner.getSelectedItem().toString());
         temp.add((Integer.toString(rand_number)) + "%");
 
         arr.add(temp);
