@@ -96,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
                 tv.setText(arr.get(i).get(j).toString());
                 tv.setPadding(50, 20, 20 , 20);
                 tv.setTextSize(18);
+                tv.setWidth(200);
+                tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 r.addView(tv);
             }
             tb.addView(r);
