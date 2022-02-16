@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Debug;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Calculate(View view){
+        hideKeybaord(view);
         Random rand = new Random();
         int rand_number = rand.nextInt(100);
 
@@ -86,6 +88,10 @@ public class MainActivity extends AppCompatActivity {
 
          updateTable();
 
+    }
+    private void hideKeybaord(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getApplicationWindowToken(),0);
     }
 
     public void updateTable(){
